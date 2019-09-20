@@ -1,8 +1,8 @@
 // Asked by Facebook
 
-// For given digits string '123123123' find count of possible decoded messages,
-// where 1 decoded as 'a', 2 = 'b', 3 = 'c' ... 26 = 'z'
-// example: '123' -> decoded as 'aw' and 'lc', result = 2
+// Given the mapping a = 1, b = 2, ... z = 26, and an encoded message, count the number of ways it can be decoded.
+// For example, the message '111' would give 3, since it could be decoded as 'aaa', 'ka', and 'ak'.
+// You can assume that the messages are decodable. For example, '001' is not allowed.
 
 const letters = [
   '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
