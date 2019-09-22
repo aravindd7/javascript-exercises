@@ -1,15 +1,15 @@
 // Asked by Facebook
 
-// Дана матрица содержащая только 0 и 1, строки внутри отсортированы, но столбцы - нет.
-// Найти индекс первого столбца содержащего хоть одну единицу. 
-// Пример:
+// Given matrix n*n, that contains only 0 and 1. It is sorted row-wise, like 0 0 0 1 1, but nort sorted column-wise.
+// Need to find index of first column containing 1.
+// Example:
 // 0 0 0 0 0 0 
 // 0 0 0 0 1 1
 // 0 0 0 0 1 1
 // 0 1 1 1 1 1
 // 0 0 1 1 1 1
 // 0 0 0 0 1 1
-// Ответ должен быть: 1.
+// The answer should be: 1.
 
 // O(n*n)
 const find1 = (arr) => {
@@ -36,8 +36,8 @@ const find2 = (arr) => {
   return minPosition;
 }
 
-// O(nlogn)
-const findPosition = (array) => {
+// O(logn)
+const findPosition1 = (array) => {
   if (array[0] === 1) {
     return 0;
   }
@@ -62,17 +62,18 @@ const findPosition = (array) => {
   return -1;
 }
 
-// console.log('result:', findPosition([1, 1, 1, 1, 1]));
-// console.log('result:', findPosition([0, 1, 1, 1, 1]));
-// console.log('result:', findPosition([0, 0, 1, 1, 1]));
-// console.log('result:', findPosition([0, 0, 0, 1, 1]));
-// console.log('result:', findPosition([0, 0, 0, 0, 1]));
-// console.log('result:', findPosition([0, 0, 0, 0, 0]));
+// console.log('result:', findPosition1([1, 1, 1, 1, 1]));
+// console.log('result:', findPosition1([0, 1, 1, 1, 1]));
+// console.log('result:', findPosition1([0, 0, 1, 1, 1]));
+// console.log('result:', findPosition1([0, 0, 0, 1, 1]));
+// console.log('result:', findPosition1([0, 0, 0, 0, 1]));
+// console.log('result:', findPosition1([0, 0, 0, 0, 0]));
 
+// O(nlogn)
 const find3 = (arr) => {
   let minPosition = -1;
   for (let y = 0; y <= arr.length - 1; y++) {
-    const position = findPosition(arr[y]);
+    const position = findPosition1(arr[y]);
     if (position >= 0 && (minPosition < 0 || position < minPosition)) {
       minPosition = position;
     }
@@ -80,10 +81,55 @@ const find3 = (arr) => {
   return minPosition;
 }
 
+const findPosition2 = (array, maxPosition) => {
+  if (array[0] === 1) {
+    return 0;
+  }
+  if (array[maxPosition] === 0) {
+    return -1;
+  }
+  let i = 0, j = maxPosition;
+  while (i !== j) {
+    const middlePosition = Math.floor((i + j) / 2);
+    if (array[middlePosition] === 0 && array[middlePosition + 1] === 1) {
+      return middlePosition + 1;
+    }
+    if (array[middlePosition] === 0) {
+      i = middlePosition;
+    } else if (array[middlePosition] === 1) {
+      j = middlePosition;
+    }
+  }
+  return -1;
+}
+
+// console.log('result:', findPosition2([1, 1, 1, 1, 1], 3));
+// console.log('result:', findPosition2([0, 1, 1, 1, 1], 3));
+// console.log('result:', findPosition2([0, 0, 1, 1, 1], 3));
+// console.log('result:', findPosition2([0, 0, 0, 1, 1], 3));
+// console.log('result:', findPosition2([0, 0, 0, 0, 1], 3));
+// console.log('result:', findPosition2([0, 0, 0, 0, 0], 3));
+
+// O(nlogn)
+const find4 = (arr) => {
+  let minPosition = -1;
+  for (let i = 0; i < arr.length; i++) {
+    const position = findPosition2(arr[i], minPosition > 0 ? minPosition : arr[i].length - 1);
+    if (position > 0 && (minPosition === -1 || position < minPosition)) {
+      minPosition = position;
+    }
+    if (minPosition === 0) {
+      return minPosition;
+    }
+  }
+  return minPosition;
+}
+
 const n = 10000;
-const random = Math.floor(Math.random() * n);
+const random1 = Math.floor(Math.random() * n);
 const arr = [...Array(n)].map(e => {
-  return [...Array(n)].map((e, i) => i < random ? 0 : 1);
+  const random2 = Math.floor(Math.random() * n);
+  return [...Array(n)].map((e, i) => i > random1 && i > random2 ? 1 : 0);
 });
 
 // console.log(arr);
@@ -100,5 +146,10 @@ console.log('Result:', res, `execution time: ${end - start}`);
 
 start = new Date().getTime();
 res = find3(arr);
+end = new Date().getTime();
+console.log('Result:', res, `execution time: ${end - start}`);
+
+start = new Date().getTime();
+res = find4(arr);
 end = new Date().getTime();
 console.log('Result:', res, `execution time: ${end - start}`);
