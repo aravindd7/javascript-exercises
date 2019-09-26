@@ -31,57 +31,24 @@ const search = (str, k) => {
 let start = new Date().getTime();
 let res = search('abbcca', 3);
 let end = new Date().getTime();
-console.log('Result1:', res, `execution time: ${end - start}`);
+console.log('Result:', res, `execution time: ${end - start}`);
 
 start = new Date().getTime();
 res = search('abbcaccca', 2);
 end = new Date().getTime();
-console.log('Result1:', res, `execution time: ${end - start}`);
+console.log('Result:', res, `execution time: ${end - start}`);
 
 start = new Date().getTime();
 res = search('asd', 4);
 end = new Date().getTime();
-console.log('Result1:', res, `execution time: ${end - start}`);
+console.log('Result:', res, `execution time: ${end - start}`);
 
 start = new Date().getTime();
 res = search('abababbababaj', 1);
 end = new Date().getTime();
-console.log('Result1:', res, `execution time: ${end - start}`);
+console.log('Result:', res, `execution time: ${end - start}`);
 
 start = new Date().getTime();
 res = search('abababbababajjjjjj', 2);
 end = new Date().getTime();
-console.log('Result1:', res, `execution time: ${end - start}`);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// start = new Date().getTime();
-// res = search('c', 2);
-// end = new Date().getTime();
-// console.log('Result1:', res, `execution time: ${end - start}`);
-
-// start = new Date().getTime();
-// res = search('zc', 2);
-// end = new Date().getTime();
-// console.log('Result1:', res, `execution time: ${end - start}`);
+console.log('Result:', res, `execution time: ${end - start}`);
