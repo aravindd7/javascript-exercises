@@ -1,5 +1,5 @@
 // Insertion Sort
-// Time Complexity: O(n*2)
+// Time Complexity: O(n*n)
 // Space: O(1)
 const sort = (arr) => {
   for (let i = 0; i < arr.length; i++) {
