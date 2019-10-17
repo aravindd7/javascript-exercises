@@ -49,3 +49,20 @@ console.log('dequeue', q.pop());
 console.log(q.toString());
 console.log('peek', q.peek());
 console.log(q.toString());
+
+
+// functional way and using array 
+const createStack = () => {
+  let items = [];
+  const push = (item) => {
+    items.push(item);
+  };
+  const pop = () => {
+    const item = items.splice(items.length - 1, 1);
+    return item[0];
+  };
+  const peek = () => {
+    return items[items.length - 1];
+  };
+  return { items, push, pop, peek };
+}
