@@ -1,7 +1,7 @@
 // Asked by Google
 
-// Given an array of integers, [1, 2, 5] consider it as a number 125, and return 
-// incremented number in same array format - [1, 2, 6]
+// Given an array of integers, [1, 2, 5] consider it as a number 125, and return  incremented number in same array
+// format - [1, 2, 6] 
 // Example: [9, 9] -> [1, 0 , 0]
 
 const incrementArray1 = (arr) => (+arr.join('') + 1).toString().split('').map(a => +a);
